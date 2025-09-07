@@ -3,11 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <title>The End Ransomware</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;900&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
       height: 100vh;
+      width: 100vw;
       background: #000;
       color: #ff3b3b;
       font-family: 'Orbitron', sans-serif;
@@ -16,86 +17,88 @@
       align-items: center;
       justify-content: center;
       text-align: center;
+      user-select: none;
       overflow: hidden;
     }
     h1 {
-      font-size: 2em;
-      margin-bottom: 5px;
-      text-shadow: 0 0 10px #ff0000, 0 0 20px #800000;
+      font-size: 4.5em;
+      margin: 0;
+      text-shadow: 0 0 30px #ff0000, 0 0 60px #800000;
     }
     h2 {
-      margin: 0;
-      font-size: 1em;
-      color: #ddd;
+      margin: 15px 0 40px 0;
+      font-size: 2em;
+      color: #ccc;
       font-weight: 400;
     }
     .box {
-      border: 1px solid #ff3b3b;
-      padding: 20px;
-      margin-top: 20px;
-      background: rgba(255, 0, 0, 0.05);
-      box-shadow: 0 0 15px #ff0000;
-      width: 90%;
-      max-width: 500px;
+      border: 3px solid #ff3b3b;
+      padding: 50px;
+      background: rgba(255, 0, 0, 0.08);
+      box-shadow: 0 0 35px #ff0000;
+      width: 85%;
+      max-width: 900px;
     }
     .blink {
-      animation: blink 1.2s infinite;
-      font-size: 0.9em;
+      animation: blink 1s infinite;
+      font-size: 1.5em;
+      margin-bottom: 25px;
     }
     @keyframes blink {
       50% { opacity: 0; }
     }
     #timer {
-      font-size: 1.1em;
-      margin: 15px 0;
+      font-size: 2.5em;
+      margin: 25px 0;
       color: #ffcc00;
-      text-shadow: 0 0 8px #ff0000;
+      text-shadow: 0 0 15px #ff0000;
     }
     input {
-      padding: 8px;
-      font-size: 0.9em;
+      padding: 18px;
+      font-size: 1.5em;
       text-align: center;
-      border: 1px solid #ff3b3b;
+      border: 2px solid #ff3b3b;
       outline: none;
       background: #111;
       color: #0f0;
-      width: 80%;
-      margin-top: 8px;
+      width: 70%;
+      margin-top: 15px;
     }
     button {
-      margin-top: 12px;
-      padding: 8px 16px;
+      margin-top: 20px;
+      padding: 16px 35px;
       background: #ff3b3b;
       color: #fff;
-      font-size: 0.9em;
+      font-size: 1.3em;
       border: none;
       cursor: pointer;
       transition: 0.2s;
+      box-shadow: 0 0 18px #ff0000;
     }
     button:hover {
       background: #800000;
     }
     #result {
-      margin-top: 10px;
-      font-size: 0.9em;
+      margin-top: 20px;
+      font-size: 1.2em;
     }
   </style>
 </head>
 <body>
   <h1>Perangkat Anda Telah Terkunci</h1>
-  <h2>Your Device Has Been Locked By ZalOfficial</h2>
+  <h2>Bayar Tebusan Sebesar Rp 500.000 Jika Ingin Membuka Perangkat!</h2>
 
   <div class="box">
-    <p class="blink">To Restore Access, Enter The Decryption Key.</p>
-    <div id="timer">Time Left: 10:00:00</div>
-    <input type="password" id="keyInput" placeholder="Enter key">
+    <p class="blink">Enter the decryption key below to restore access.</p>
+    <div id="timer">Time left: 00:10:00</div>
+    <input type="password" id="keyInput" placeholder="Enter decryption key">
     <br>
     <button onclick="checkKey()">Unlock</button>
     <p id="result"></p>
   </div>
 
   <script>
-    // Fake countdown
+    // Countdown
     let time = 10 * 60;
     const timerEl = document.getElementById("timer");
     function updateTimer() {
@@ -107,12 +110,13 @@
     setInterval(updateTimer, 1000);
     updateTimer();
 
+    // Unlock
     function checkKey() {
       const key = document.getElementById("keyInput").value;
       const result = document.getElementById("result");
 
       if (key === "unlockme") {
-        result.innerHTML = "Files Unlocked!";
+        result.innerHTML = "✅ Files unlocked (Simulation)";
         result.style.color = "lime";
         document.body.style.background = "#111";
       } else {
@@ -120,6 +124,14 @@
         result.style.color = "red";
       }
     }
+
+    // Fake lock feel
+    document.addEventListener("contextmenu", e => e.preventDefault());
+    document.addEventListener("keydown", e => {
+      if (["F12","Escape"].includes(e.key) || (e.ctrlKey && e.shiftKey)) {
+        e.preventDefault();
+      }
+    });
   </script>
 </body>
 </html>
