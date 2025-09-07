@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>The End Ransomware</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: #000;
+      color: #ff3b3b;
+      font-family: 'Orbitron', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+    h1 {
+      font-size: 2em;
+      margin-bottom: 5px;
+      text-shadow: 0 0 10px #ff0000, 0 0 20px #800000;
+    }
+    h2 {
+      margin: 0;
+      font-size: 1em;
+      color: #ddd;
+      font-weight: 400;
+    }
+    .box {
+      border: 1px solid #ff3b3b;
+      padding: 20px;
+      margin-top: 20px;
+      background: rgba(255, 0, 0, 0.05);
+      box-shadow: 0 0 15px #ff0000;
+      width: 90%;
+      max-width: 500px;
+    }
+    .blink {
+      animation: blink 1.2s infinite;
+      font-size: 0.9em;
+    }
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+    #timer {
+      font-size: 1.1em;
+      margin: 15px 0;
+      color: #ffcc00;
+      text-shadow: 0 0 8px #ff0000;
+    }
+    input {
+      padding: 8px;
+      font-size: 0.9em;
+      text-align: center;
+      border: 1px solid #ff3b3b;
+      outline: none;
+      background: #111;
+      color: #0f0;
+      width: 80%;
+      margin-top: 8px;
+    }
+    button {
+      margin-top: 12px;
+      padding: 8px 16px;
+      background: #ff3b3b;
+      color: #fff;
+      font-size: 0.9em;
+      border: none;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    button:hover {
+      background: #800000;
+    }
+    #result {
+      margin-top: 10px;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+  <h1>Perangkat Anda Telah Terkunci</h1>
+  <h2>Your Device Has Been Locked By ZalOfficial</h2>
+
+  <div class="box">
+    <p class="blink">To Restore Access, Enter The Decryption Key.</p>
+    <div id="timer">Time Left: 10:00:00</div>
+    <input type="password" id="keyInput" placeholder="Enter key">
+    <br>
+    <button onclick="checkKey()">Unlock</button>
+    <p id="result"></p>
+  </div>
+
+  <script>
+    // Fake countdown
+    let time = 10 * 60;
+    const timerEl = document.getElementById("timer");
+    function updateTimer() {
+      let minutes = Math.floor(time / 60);
+      let seconds = time % 60;
+      timerEl.textContent = `Time left: ${String(minutes).padStart(2,"0")}:${String(seconds).padStart(2,"0")}`;
+      if (time > 0) time--;
+    }
+    setInterval(updateTimer, 1000);
+    updateTimer();
+
+    function checkKey() {
+      const key = document.getElementById("keyInput").value;
+      const result = document.getElementById("result");
+
+      if (key === "unlockme") {
+        result.innerHTML = "Files Unlocked!";
+        result.style.color = "lime";
+        document.body.style.background = "#111";
+      } else {
+        result.innerHTML = "❌ Wrong key. Files remain encrypted.";
+        result.style.color = "red";
+      }
+    }
+  </script>
+</body>
+</html>
